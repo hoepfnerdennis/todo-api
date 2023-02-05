@@ -13,12 +13,9 @@ const todoService = new SupabaseTodoService();
 export default async function handler(req: NextRequest) {
   const { method, url } = req;
   const { searchParams } = new URL(url);
-  const rawId = searchParams.get("id");
-
+  const id = searchParams.get("id");
   try {
-    const id = Number(rawId);
-
-    if (!id && id !== 0) {
+    if (!id) {
       throw new HttpException(400, "Invalid value for id");
     }
 

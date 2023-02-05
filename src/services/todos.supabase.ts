@@ -18,7 +18,7 @@ class SupabaseTodoService implements AbstractTodoService {
     return allTodo || [];
   }
 
-  public async findTodoById(TodoId: number): Promise<Todo> {
+  public async findTodoById(TodoId: string): Promise<Todo> {
     if (isEmpty(TodoId)) throw new HttpException(400, "TodoId is empty");
     const findTodo = await this.findUnique(TodoId);
     if (!findTodo) throw new HttpException(409, "Todo doesn't exist");
@@ -38,7 +38,7 @@ class SupabaseTodoService implements AbstractTodoService {
   }
 
   public async updateTodo(
-    TodoId: number,
+    TodoId: string,
     TodoData: Pick<Todo, "title" | "description">
   ): Promise<Todo> {
     if (isEmpty(TodoData)) throw new HttpException(400, "TodoData is empty");
@@ -53,7 +53,7 @@ class SupabaseTodoService implements AbstractTodoService {
     return updateTodoData;
   }
 
-  public async deleteTodo(TodoId: number): Promise<Todo> {
+  public async deleteTodo(TodoId: string): Promise<Todo> {
     if (isEmpty(TodoId)) throw new HttpException(400, "Todo doesn't existId");
     const findTodo = await this.findUnique(TodoId);
     if (!findTodo) throw new HttpException(409, "Todo doesn't exist");
@@ -66,7 +66,7 @@ class SupabaseTodoService implements AbstractTodoService {
     return deleteTodoData;
   }
 
-  private async findUnique(TodoId: number): Promise<Todo | null> {
+  private async findUnique(TodoId: string): Promise<Todo | null> {
     const { data } = await this.todos.select().eq("id", TodoId).single();
     return data;
   }

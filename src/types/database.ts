@@ -12,17 +12,17 @@ export interface Database {
       Todo: {
         Row: {
           description: string | null;
-          id: number;
+          id: string;
           title: string;
         };
         Insert: {
           description?: string | null;
-          id?: number;
+          id?: string;
           title: string;
         };
         Update: {
           description?: string | null;
-          id?: number;
+          id?: string;
           title?: string;
         };
       };
