@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "generate-go-client": "openapi-generator-cli generate --generator-name go --input-spec https://todo-api-hazel.vercel.app/api-doc.json --output ../go-client"
   },
   "dependencies": {
     "@next/font": "13.1.6",
@@ -23,6 +24,7 @@
     "typescript": "4.9.5"
   },
   "devDependencies": {
+    "@openapitools/openapi-generator-cli": "^2.5.2",
     "@types/swagger-ui-react": "^4.11.0"
   }
 }
