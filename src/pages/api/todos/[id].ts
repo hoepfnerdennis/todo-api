@@ -18,7 +18,7 @@ export default async function handler(req: NextRequest) {
   try {
     const id = Number(rawId);
 
-    if (!id) {
+    if (!id && id !== 0) {
       throw new HttpException(400, "Invalid value for id");
     }
 
